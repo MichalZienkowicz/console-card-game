@@ -26,8 +26,8 @@ namespace ConsoleApp1
             side1 = new TableSide(player1);
             Player player2 = gameS.InitiatePlayer();
             side2 = new TableSide(player2);
-            gameS.FirstTour(side1, side2);
-            gameS.FirstTour(side2, side1);
+            gameS.FirstTurn(side1, side2);
+            gameS.FirstTurn(side2, side1);
             turns++;
 
             while (true)

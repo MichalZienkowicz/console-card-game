@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            List<ICard> cardsForDeck1 = new List<ICard>()
+            List<Card> cardsForDeck1 = new List<Card>()
             {
             new StandardCard(1, 1, 1),
             new StandardCard(1, 2, 2),
@@ -24,7 +24,7 @@ namespace ConsoleApp1
             new StandardCard(1, 3, 3),
             };
 
-            List<ICard> cardsForDeck2 = new List<ICard>()
+            List<Card> cardsForDeck2 = new List<Card>()
             {
             new StandardCard(1, 2, 2),
             new StandardCard(2, 1, 2),

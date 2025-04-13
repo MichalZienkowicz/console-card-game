@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class FlyingCard : ICard
+    internal class FlyingCard : Card
     {
         public FlyingCard(int attack, int health, int gold)
         {

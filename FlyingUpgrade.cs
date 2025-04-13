@@ -8,7 +8,7 @@ namespace ConsoleApp1
 {
     internal class FlyingUpgrade : CardUpgrade
     {
-        public FlyingUpgrade(ICard card, int bonusHealth, int bonusAttack, int cost)
+        public FlyingUpgrade(Card card, int bonusHealth, int bonusAttack, int cost)
         {
             UpgradedCard = card;
             UpgradedCard.health += bonusHealth;

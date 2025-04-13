@@ -8,25 +8,26 @@ namespace ConsoleApp1
 {
     internal class InputAsker
     {
-        public ICard AskForCardToPlay(List<ICard> hand, bool firstTour = false)
+        public Card AskForCardToPlay(List<Card> hand, bool firstTurn = false)
         {
-            ICard card;
-            int downRange =1;
+            Card card;
+            int downRange = 1;
+            int index;
             if(hand.Count() > 0)
             {
-                int index;
                 Console.WriteLine("Choose the card from your hand to play!");
-                if(firstTour == false)
+                if(firstTurn == false)
                 {
                     Console.WriteLine("0.  Don't play any card.");
                     downRange = 0;
                 }
                 int i = 0;
-                foreach (ICard c in hand)
+                foreach (Card handCard in hand)
                 {
                     i++;
-                    Console.WriteLine($"{i}.  type: [{c.type}]  attack: [{c.attack}]  health: [{c.health}]  gold: [{c.gold}]");
+                    Console.WriteLine($"{i}.  type: [{handCard.type}]  attack: [{handCard.attack}]  health: [{handCard.health}]  gold: [{handCard.gold}]");
                 }
+
                 Console.Write("Enter number of chosen card: ");
                 index = TryGetIntInRange(downRange, hand.Count) - 1;
                 if (index == -1)
@@ -66,13 +67,13 @@ namespace ConsoleApp1
             }
             return field;
         }
-        public string AskForAttackField(List <string> avaliableAttackFields, string attackerField)
+        public string AskForAttackField(List<string> avaliableAttackFields, string attackerField)
         {
             string value;
             int index;
             Console.WriteLine($"Choose the target field for your card on field {attackerField}");
-            int i = 0;
             Console.WriteLine("0.  Dont attack with this card.");
+            int i = 0;
             foreach (string field in avaliableAttackFields)
             {
                 i++;
@@ -116,7 +117,7 @@ namespace ConsoleApp1
             }
             return field;
         }
-        public int AskForUpgradeToBuy(List<CardUpgrade> avaliableUpgrades, int playerGold, Dictionary<string, Dictionary<string, dynamic>> boardSide)// dodać logikę żeby nie dało się kupić czegoś z ujemnym goldem
+        public int AskForIndexOfUpgradeToBuy(List<CardUpgrade> avaliableUpgrades, int playerGold, Dictionary<string, Dictionary<string, dynamic>> boardSide)// to do: make sure no bying with negative gold takes place
         {
             {
                 int index;
@@ -168,7 +169,7 @@ namespace ConsoleApp1
             int index;
             Console.WriteLine("Choose players deck!");
             int i = 0;
-            foreach(Deck d in decks)
+            foreach (Deck d in decks)
             {
                 i++;
                 Console.WriteLine($"{i}.  {d.name}");
@@ -188,7 +189,7 @@ namespace ConsoleApp1
             number = TryGetIntInRange(0,2);
             return number;
         }
-        public int AskForNextActionFirstTour()
+        public int AskForNextActionFirstTurn()
         {
             int number;
             Console.WriteLine("Choose your next action!");

@@ -35,7 +35,7 @@ namespace ConsoleApp1
             //Console.ReadLine();
             boardSide[column][row] = chosenUpgrade;
         }
-        public void PlaceCard(ICard chosenCard, string chosenField)
+        public void PlaceCard(Card chosenCard, string chosenField)
         {
             string column = chosenField[0].ToString();
             string row = chosenField[1].ToString();

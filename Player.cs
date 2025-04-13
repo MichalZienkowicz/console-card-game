@@ -16,7 +16,7 @@ namespace ConsoleApp1
         public string type; 
         public int OwnedGold { get; set; }
         public Deck Deck { get; set; }
-        public List<ICard> Hand = new List<ICard>();
+        public List<Card> Hand = new List<Card>();
         public Player(string name, Deck deck, int gold = 5, int health = 20, int attack = 0)
         {
             type = "player";

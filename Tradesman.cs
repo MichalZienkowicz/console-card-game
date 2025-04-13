@@ -15,7 +15,7 @@ namespace ConsoleApp1
         }
         public CardUpgrade CreateNewUpgrade()
         {
-            ICard emptyCard = new StandardCard(0, 0, 0);
+            Card emptyCard = new StandardCard(0, 0, 0);
             Random rand = new Random();
             CardUpgrade upgrade;
             int bonusHealth = rand.Next(rand.Next(3, 10));

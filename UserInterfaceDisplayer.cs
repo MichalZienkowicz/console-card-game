@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class GraphicInterfaceDisplayer
+    internal class UserInterfaceDisplayer
     {
-        private void CardDisplay(string field, Dictionary<string, Dictionary<string, dynamic>> boardSide)
+        private void DisplayCard(string field, Dictionary<string, Dictionary<string, dynamic>> boardSide)
         {
             string column = field[0].ToString();
             string row = field[1].ToString();
@@ -44,7 +44,7 @@ namespace ConsoleApp1
                 foreach(var kvp in boardSide2)
                 {
                     string field = kvp.Key + i.ToString();
-                    CardDisplay(field, boardSide2);
+                    DisplayCard(field, boardSide2);
                 }
                 Console.WriteLine();    
             }
@@ -55,14 +55,14 @@ namespace ConsoleApp1
                 foreach (var kvp in boardSide1)
                 {
                     string field = kvp.Key + i.ToString();
-                    CardDisplay(field, boardSide1);
+                    DisplayCard(field, boardSide1);
                 }
                 Console.WriteLine();
             }
             Console.WriteLine(playerInfo1 + "    <<< CURRENTLY PLAYING" + new string(' ', 135 - playerInfo1.Length) + "]");
             Console.WriteLine();
         }
-        public void TradesmanDisplay(List<CardUpgrade> avaliableUpgrades)
+        public void DisplayTradesman(List<CardUpgrade> avaliableUpgrades)
         {
             Console.WriteLine(new String('_', 160));
             Console.WriteLine("Tradesman current offer:");

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    abstract class CardUpgrade : ICard
+    abstract class CardUpgrade : Card
     {
-        public ICard UpgradedCard;
+        public Card UpgradedCard;
         public int cost { get; set; }
         public override int health
         {
@@ -35,7 +35,7 @@ namespace ConsoleApp1
             get { return UpgradedCard.field; }
             set { UpgradedCard.field = value; }
         }
-        public void ReplaceCardInUpgrade(ICard card)
+        public void ReplaceCardInUpgrade(Card card)
         {
             int bonusHealth = health;
             int bonusAttack = attack;

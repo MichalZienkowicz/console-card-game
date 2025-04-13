@@ -11,10 +11,10 @@ namespace ConsoleApp1
         private List<Deck> decks = new List<Deck>();
         private Tradesman tradesman;
         private InputAsker asker;
-        private GraphicInterfaceDisplayer gid;
+        private UserInterfaceDisplayer UIDisplayer;
         public GameSegments(List<Deck> givenDecks=null)
         {
-            gid = new GraphicInterfaceDisplayer();
+            UIDisplayer = new UserInterfaceDisplayer();
             asker = new InputAsker();
             tradesman = new Tradesman();
             if(givenDecks != null)
@@ -23,7 +23,7 @@ namespace ConsoleApp1
         }
         public void CreateDecks()
         {
-            List<ICard> cardsForDeck1 = new List<ICard>()
+            List<Card> cardsForDeck1 = new List<Card>()
             {
             new StandardCard(1, 1, 1),
             new StandardCard(1, 2, 2),
@@ -36,7 +36,7 @@ namespace ConsoleApp1
             new ShooterCard(2, 2, 3),
             new StandardCard(1, 3, 3),
             };
-            List<ICard> cardsForDeck2 = new List<ICard>()
+            List<Card> cardsForDeck2 = new List<Card>()
             {
             new StandardCard(1, 2, 2),
             new StandardCard(2, 1, 2),
@@ -62,23 +62,23 @@ namespace ConsoleApp1
             Player player = new Player(name, deck);
             return player;
         }
-        public void FirstTour(TableSide turnSide, TableSide oppositeSide)
+        public void FirstTurn(TableSide turnSide, TableSide oppositeSide)
         {
-            bool firstTour = true;
+            bool firstTurn = true;
             for(int i=0; i<2; i++)
             {
-                gid.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
-                ICard card = asker.AskForCardToPlay(turnSide.player.Hand, firstTour);
+                UIDisplayer.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
+                Card card = asker.AskForCardToPlay(turnSide.player.Hand, firstTurn);
                 string field = asker.AskForPlacementField(turnSide.boardSide);
                 turnSide.PlaceCard(card, field);
-                gid.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
+                UIDisplayer.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
             }
             bool repeat = true;
             int action;
             while (repeat)
             {
-                gid.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
-                action = asker.AskForNextActionFirstTour();
+                UIDisplayer.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
+                action = asker.AskForNextActionFirstTurn();
                 switch (action)
                 {
                     case 0:
@@ -88,7 +88,7 @@ namespace ConsoleApp1
 
                     case 1:
 
-                        ICard card = asker.AskForCardToPlay(turnSide.player.Hand);
+                        Card card = asker.AskForCardToPlay(turnSide.player.Hand);
                         if (card != null)
                         {
                             string pField = asker.AskForPlacementField(turnSide.boardSide);
@@ -97,7 +97,7 @@ namespace ConsoleApp1
                         }
                         break;
                 }
-                gid.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
+                UIDisplayer.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
             }
         }
 
@@ -110,8 +110,8 @@ namespace ConsoleApp1
             bool repeat = true;
             while (repeat)
             {
-                gid.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
-                gid.TradesmanDisplay(tradesman.avaliableCardUpgrades);
+                UIDisplayer.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
+                UIDisplayer.DisplayTradesman(tradesman.avaliableCardUpgrades);
                 int action = asker.AskForNextAction();
                 switch (action)
                 {
@@ -127,8 +127,8 @@ namespace ConsoleApp1
                                         List<string> aFields = kvp.Value[kvp2.Key].AvaliableAttackFields(turnSide.boardSide, oppositeSide.boardSide);
                                         if (aFields != null)
                                         {
-                                            gid.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
-                                            gid.TradesmanDisplay(tradesman.avaliableCardUpgrades);
+                                            UIDisplayer.DisplayBoards(turnSide.boardSide, oppositeSide.boardSide, turnSide.player, oppositeSide.player);
+                                            UIDisplayer.DisplayTradesman(tradesman.avaliableCardUpgrades);
                                             string aField = asker.AskForAttackField(aFields, kvp.Key + kvp2.Key);
                                             if (aField != null)
                                             {
@@ -145,7 +145,7 @@ namespace ConsoleApp1
 
                     case 1:
 
-                        ICard card = asker.AskForCardToPlay(turnSide.player.Hand);
+                        Card card = asker.AskForCardToPlay(turnSide.player.Hand);
                         if (card != null)
                         {
                             string pField = asker.AskForPlacementField(turnSide.boardSide);
@@ -156,7 +156,7 @@ namespace ConsoleApp1
 
                     case 2:
 
-                        int n = asker.AskForUpgradeToBuy(tradesman.avaliableCardUpgrades, turnSide.player.OwnedGold, turnSide.boardSide);
+                        int n = asker.AskForIndexOfUpgradeToBuy(tradesman.avaliableCardUpgrades, turnSide.player.OwnedGold, turnSide.boardSide);
                         if (n >= 0)
                         {
                             CardUpgrade upgrade = tradesman.SellUpgradeToPlayer(n);
