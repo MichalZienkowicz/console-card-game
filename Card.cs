@@ -14,11 +14,11 @@ namespace ConsoleApp1
         public virtual string field { get; set; }
         public virtual string type { get; set; }
 
-        public virtual List<string> AvaliableAttackFields(Dictionary<string, Dictionary<string, dynamic>> ownBoard, 
-            Dictionary<string, Dictionary<string, dynamic>> enemyBoard)
-        {
-            return new List<string>();
-        }
+        //public virtual List<string> AvaliableAttackFields(Dictionary<string, Dictionary<string, dynamic>> ownBoard, 
+        //    Dictionary<string, Dictionary<string, dynamic>> enemyBoard)
+        //{
+        //    return new List<string>();
+        //}
         public virtual void Attack(Dictionary<string, Dictionary<string, dynamic>> ownBoard,
             Dictionary<string, Dictionary<string, dynamic>> enemyBoard, string chosenField)
         {
@@ -27,5 +27,7 @@ namespace ConsoleApp1
             enemyBoard[column][row].health -= attack;
             health -= enemyBoard[column][row].attack;
         }
+        public abstract List<string> AvaliableAttackFields(Dictionary<string, Dictionary<string, dynamic>> ownBoard,
+            Dictionary<string, Dictionary<string, dynamic>> enemyBoard);
     }
 }

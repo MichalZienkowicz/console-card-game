@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class TableSide
+    internal class TableSide // to do: consider reformating structure of the entire table side
     {
         public Player player;
         public Dictionary<string, Dictionary<string, dynamic>> boardSide;
@@ -28,11 +28,7 @@ namespace ConsoleApp1
         {
             string column = chosenField[0].ToString();
             string row = chosenField[1].ToString();
-            //chosenUpgrade.UpgradedCard = boardSide[column][row];
             chosenUpgrade.ReplaceCardInUpgrade(boardSide[column][row]);
-            //Console.WriteLine("Upgraded card?  " + chosenUpgrade.UpgradedCard.type + " a:" + chosenUpgrade.UpgradedCard.attack + " h:" + chosenUpgrade.UpgradedCard.health);
-            //Console.WriteLine("Upgrade?        " + chosenUpgrade.type + " a:" + chosenUpgrade.attack + " h:" + chosenUpgrade.health);
-            //Console.ReadLine();
             boardSide[column][row] = chosenUpgrade;
         }
         public void PlaceCard(Card chosenCard, string chosenField)
@@ -44,7 +40,7 @@ namespace ConsoleApp1
             player.Hand.Remove(chosenCard); 
 
         }
-        public void CheckDeadCards(Player enemyPlayer)
+        public void CheckForDeadCards(Player enemyPlayer)
         {
             foreach(var kvp in boardSide)
             {
@@ -59,7 +55,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public bool DrawCondition()
+        public bool CheckForDrawCondition()
         {
             bool value = false;
             int emptyFields=0;

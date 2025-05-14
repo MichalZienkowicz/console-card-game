@@ -133,8 +133,8 @@ namespace ConsoleApp1
                                             if (aField != null)
                                             {
                                                 kvp.Value[kvp2.Key].Attack(turnSide.boardSide, oppositeSide.boardSide, aField);
-                                                oppositeSide.CheckDeadCards(turnSide.player);
-                                                turnSide.CheckDeadCards(oppositeSide.player);
+                                                oppositeSide.CheckForDeadCards(turnSide.player);
+                                                turnSide.CheckForDeadCards(oppositeSide.player);
                                             }
                                         }
                                     }

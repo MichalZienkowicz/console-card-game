@@ -96,7 +96,7 @@ namespace ConsoleApp1
         public string AskForCardFieldToUpgrade(Dictionary<string, Dictionary<string, dynamic>> boardSide)
         {
             string field;
-            Console.WriteLine("Choose field with card you want use the ubgrade on!");
+            Console.WriteLine("Choose field with card you want use the upgrade on!");
             while (true)
             {
                 try
